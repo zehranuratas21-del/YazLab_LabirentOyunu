@@ -2,25 +2,36 @@ using UnityEngine;
 
 public class Salter : MonoBehaviour
 {
-    // Þaltere basýldýðýnda açýlacak olan bariyeri buraya sürükleyeceðiz
-    public GameObject bariyer;
+    [Header("Ayarlar")]
+    public GameObject bariyer;          // Kaldýrýlacak engel duvarý
+    public Transform ajanTransform;     // Sahnedeki Agent objesini buraya sürükleyeceðiz
+    public float tetiklenmeMesafesi = 1.5f; // Ajan þaltere ne kadar yaklaþýnca açýlsýn?
 
-    // Þaltere basýlýp basýlmadýðýný takip etmek için
     private bool salterAktif = false;
 
-    // Ajan þaltere yaklaþýp etkileþime girdiðinde bu fonksiyon çalýþacak
+    void Update()
+    {
+        if (!salterAktif && ajanTransform != null)
+        {
+            // Ajan ile þalter arasýndaki mesafeyi hesaplýyoruz
+            float mesafe = Vector3.Distance(transform.position, ajanTransform.position);
+
+            // Eðer ajan belirlenen mesafeden daha yakýnsa þalter tetiklenir
+            if (mesafe <= tetiklenmeMesafesi)
+            {
+                SalteriAktiflestir();
+            }
+        }
+    }
+
     public void SalteriAktiflestir()
     {
-        if (!salterAktif)
-        {
-            salterAktif = true;
-            Debug.Log("Þaltere basýldý! Bariyer açýlýyor...");
+        salterAktif = true;
+        Debug.Log("Þaltere basýldý! Bariyer açýlýyor...");
 
-            // Bariyeri sahneden kaldýrýyoruz (kapatýyoruz)
-            if (bariyer != null)
-            {
-                bariyer.SetActive(false);
-            }
+        if (bariyer != null)
+        {
+            bariyer.SetActive(false); // Engeli gizle
         }
     }
 }
