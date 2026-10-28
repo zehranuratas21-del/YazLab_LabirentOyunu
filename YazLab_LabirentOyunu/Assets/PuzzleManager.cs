@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour
 {
-    public GameObject mathPuzzleDoor; // Sahnedeki MathPuzzle_Door objesi
+    public GameObject mathPuzzleDoor; 
     private int totalScore = 0;
-    private int targetScore = 5; // 2 + 3 = 5 hedefi
+    private int targetScore = 5; // hedefimiz
 
     public void CollectItem(string itemName, GameObject itemObject)
     {
@@ -21,10 +21,10 @@ public class PuzzleManager : MonoBehaviour
 
         Debug.Log("Güncel Toplam Puan: " + totalScore);
 
-        // Toplanan objeyi sahneden kaldýr
+        // objeyi kaldýrdý
         itemObject.SetActive(false);
 
-        // Hedef puana ulaþýldýysa kapýyý aç
+       //kapý açýlan nokta
         if (totalScore >= targetScore && mathPuzzleDoor != null)
         {
             mathPuzzleDoor.SetActive(false);

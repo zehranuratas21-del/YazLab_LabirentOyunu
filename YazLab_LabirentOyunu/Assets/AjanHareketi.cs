@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class AjanHareketi : MonoBehaviour
 {
-    public Transform[] waypoints; // Sýrasýyla gidilecek hedefler (1. kutu, 2. kutu, son hedef)
+    public Transform[] waypoints; //gidilicek kutular
     private int currentWaypointIndex = 0;
 
     private NavMeshAgent agent;
@@ -12,13 +12,13 @@ public class AjanHareketi : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
 
-        // Ýlk hedefe yönlendir
+        // Ýlk hedef
         SetNextDestination();
     }
 
     void Update()
     {
-        // Eðer hedefler listesi boþ deðilse ve ajan hedefe çok yaklaþtýysa bir sonraki hedefe geç
+        // diðer kutulara devam et
         if (waypoints.Length > 0 && currentWaypointIndex < waypoints.Length)
         {
             if (waypoints[currentWaypointIndex] != null && !agent.pathPending && agent.remainingDistance < 0.5f)
@@ -28,22 +28,22 @@ public class AjanHareketi : MonoBehaviour
             }
         }
 
-        // Raycast ve Þalter Algýlama Mantýðý (Aynen korundu)
+        // þalter
         RaycastHit hit;
-        float sensorMesafesi = 3f; // Ajanýn görüþ mesafesi
+        float sensorMesafesi = 3f;
 
-        // Ajanýn önünden ileriye doðru kýrmýzý bir ýþýn çizer
+        // kýrmýzý çizgi
         Debug.DrawRay(transform.position, transform.forward * sensorMesafesi, Color.red);
 
-        // Eðer ýþýn bir nesneye çarparsa
+        
         if (Physics.Raycast(transform.position, transform.forward, out hit, sensorMesafesi))
         {
-            // Çarpan nesnenin Tag'i "Salter" ise
+            // çarpan nesnenin Tagi salter
             if (hit.collider.CompareTag("Salter"))
             {
                 Debug.Log("Þalter algýlandý! Bariyer açýlýyor...");
 
-                // Þalter scriptindeki fonksiyonu çaðýrýyoruz
+                //þalter fonksiyonu çaðýrma
                 Salter salterScript = hit.collider.GetComponent<Salter>();
                 if (salterScript != null)
                 {

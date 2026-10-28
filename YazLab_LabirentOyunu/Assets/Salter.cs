@@ -3,9 +3,9 @@ using UnityEngine;
 public class Salter : MonoBehaviour
 {
     [Header("Ayarlar")]
-    public GameObject bariyer;          // Kaldýrýlacak engel duvarý
-    public Transform ajanTransform;     // Sahnedeki Agent objesini buraya sürükleyeceðiz
-    public float tetiklenmeMesafesi = 1.5f; // Ajan þaltere ne kadar yaklaþýnca açýlsýn?
+    public GameObject bariyer;          
+    public Transform ajanTransform;    
+    public float tetiklenmeMesafesi = 1.5f; 
 
     private bool salterAktif = false;
 
@@ -13,10 +13,10 @@ public class Salter : MonoBehaviour
     {
         if (!salterAktif && ajanTransform != null)
         {
-            // Ajan ile þalter arasýndaki mesafeyi hesaplýyoruz
+            // mesafeyi hasaplama
             float mesafe = Vector3.Distance(transform.position, ajanTransform.position);
 
-            // Eðer ajan belirlenen mesafeden daha yakýnsa þalter tetiklenir
+            
             if (mesafe <= tetiklenmeMesafesi)
             {
                 SalteriAktiflestir();
