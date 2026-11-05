@@ -7,7 +7,7 @@
 ## 1. Giriş
 Problem ve amaç:Modern oyunlarda yapay zeka kullanımı.Projede iki bağımsız yapay zeka bileşeni var:otonom companion ve yerel LLM'li NPC.
 
-Oyun Senaryosun:Oyuncumuz labirentin başından başlar yanındaki yol gösterici NPC karakterimizle beraber doğru yollarda ilerler ve karşısına ilk engelimiz çıkar bu engelimiz karakteri farkedince ortadan kalkarak yolu açar.Sonrasında karakter doğru yollardan geçerek ikinci engelimiz olan puzzle etabına gelir burdaki kapıyı açmak için labirentin farklı noktalarında bulunan iki kutuyu alır ve kapı açılır.Devamında ise ilerde onu bekleyen korudorda hareketli bir bekçi vardır bu bekçiye takılmadan devam ederek son koridora ulaşır.Son koridora geldiğinde ise NPC Bekçimizle karşılaşır ve kurduğu diyaloglar doğrultusunda kapı açılarak oyun tamamlanır.
+Oyun Senaryosun:Oyuncumuz labirentin başından başlar yanındaki yol gösterici NPC karakterimizle beraber doğru yollarda ilerler ve karşısına ilk engelimiz çıkar bu engelimiz karakteri farkedince ortadan kalkarak yolu açar.Sonrasında karakter doğru yollardan geçerek ikinci engelimiz olan puzzle etabına gelir burdaki kapıyı açmak için labirentin farklı noktalarında bulunan iki kutuyu alır ve kapı açılır.Devamında ise ilerde onu bekleyen koridorda hareketli bir bekçi vardır bu bekçiye takılmadan devam ederek son koridora ulaşır.Son koridora geldiğinde ise NPC Bekçimizle karşılaşır ve kurduğu diyaloglar doğrultusunda kapı açılarak oyun tamamlanır.
 
 Kullanılan Teknolojiler:Unity(6000.6.5F1),C#,NavMesh,Ollama 3.1 8b 
 
@@ -89,9 +89,8 @@ sequenceDiagram
 
 
 ## 4. Hata Yönetimi
-Doküman bunu ayrı puanlıyor ve hata olursa 0 veriyor. Şu üç durumu ayrı ayrı yaz, her biri için “ne olur, oyuncu ne görür” belirt:
 
-Sunucu kapalıysa/ Durum/sistem ne yapar: OllamaIstemci hatasını yakalar LlmSonuç.Hata döndürür. Son oyuncu mesajı geçmişten alınır,oyun devam eder
+Sunucu kapalıysa/ Durum/sistem ne yapar: OllamaIstemci hatasını yakalar LLM Sonuç.Hata döndürür. Son oyuncu mesajı geçmişten alınır,oyun devam eder
 Oyuncu ne görür:Ollama sunucusna ulaşılamadı yada cevap zaman aşımına uğradı Ollama açık mı?
 
 Zaman aşımı	Timeout: İstek.timeout (90sn) dolunca istek iptal edilir,
